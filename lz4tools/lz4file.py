@@ -115,6 +115,8 @@ class Lz4File:
         if self.decompPos+size > -1:
             out += self.decomp[decompOld:]
             size = size - len(out)
+            if size == 0:
+                return b''
             self.pos = self.curBlkData.get('decomp_e')
             self.curBlk += 1
             self.decomp = self.read_block(blk=self.curBlkData, setCur=False)
